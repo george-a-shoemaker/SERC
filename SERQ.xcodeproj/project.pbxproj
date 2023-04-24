@@ -12,8 +12,20 @@
 		B01E37AE29F0FABF00629E1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01E37AD29F0FABF00629E1C /* ViewController.swift */; };
 		B01E37B329F0FAC000629E1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B01E37B229F0FAC000629E1C /* Assets.xcassets */; };
 		B01E37B629F0FAC000629E1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B01E37B429F0FAC000629E1C /* LaunchScreen.storyboard */; };
+		B02AD92529F1D0A200F51C13 /* SERQTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02AD92429F1D0A200F51C13 /* SERQTests.swift */; };
 		B067D80329F11CDB0022EC0F /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067D80229F11CDB0022EC0F /* DataModels.swift */; };
+		B067D80529F1B4A50022EC0F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067D80429F1B4A50022EC0F /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B02AD92629F1D0A200F51C13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B01E379E29F0FABF00629E1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B01E37A529F0FABF00629E1C;
+			remoteInfo = SERQ;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B01E37A629F0FABF00629E1C /* SERQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SERQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -23,11 +35,21 @@
 		B01E37B229F0FAC000629E1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B01E37B529F0FAC000629E1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B01E37B729F0FAC000629E1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B02AD92229F1D0A200F51C13 /* SERQTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SERQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B02AD92429F1D0A200F51C13 /* SERQTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERQTests.swift; sourceTree = "<group>"; };
 		B067D80229F11CDB0022EC0F /* DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
+		B067D80429F1B4A50022EC0F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B01E37A329F0FABF00629E1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B02AD91F29F1D0A200F51C13 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				B01E37A829F0FABF00629E1C /* SERQ */,
+				B02AD92329F1D0A200F51C13 /* SERQTests */,
 				B01E37A729F0FABF00629E1C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				B01E37A629F0FABF00629E1C /* SERQ.app */,
+				B02AD92229F1D0A200F51C13 /* SERQTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,11 +84,20 @@
 				B01E37AB29F0FABF00629E1C /* SceneDelegate.swift */,
 				B01E37AD29F0FABF00629E1C /* ViewController.swift */,
 				B067D80229F11CDB0022EC0F /* DataModels.swift */,
+				B067D80429F1B4A50022EC0F /* NetworkManager.swift */,
 				B01E37B229F0FAC000629E1C /* Assets.xcassets */,
 				B01E37B429F0FAC000629E1C /* LaunchScreen.storyboard */,
 				B01E37B729F0FAC000629E1C /* Info.plist */,
 			);
 			path = SERQ;
+			sourceTree = "<group>";
+		};
+		B02AD92329F1D0A200F51C13 /* SERQTests */ = {
+			isa = PBXGroup;
+			children = (
+				B02AD92429F1D0A200F51C13 /* SERQTests.swift */,
+			);
+			path = SERQTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +120,24 @@
 			productReference = B01E37A629F0FABF00629E1C /* SERQ.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B02AD92129F1D0A200F51C13 /* SERQTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B02AD92A29F1D0A200F51C13 /* Build configuration list for PBXNativeTarget "SERQTests" */;
+			buildPhases = (
+				B02AD91E29F1D0A200F51C13 /* Sources */,
+				B02AD91F29F1D0A200F51C13 /* Frameworks */,
+				B02AD92029F1D0A200F51C13 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B02AD92729F1D0A200F51C13 /* PBXTargetDependency */,
+			);
+			name = SERQTests;
+			productName = SERQTests;
+			productReference = B02AD92229F1D0A200F51C13 /* SERQTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -99,6 +150,10 @@
 				TargetAttributes = {
 					B01E37A529F0FABF00629E1C = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					B02AD92129F1D0A200F51C13 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = B01E37A529F0FABF00629E1C;
 					};
 				};
 			};
@@ -116,6 +171,7 @@
 			projectRoot = "";
 			targets = (
 				B01E37A529F0FABF00629E1C /* SERQ */,
+				B02AD92129F1D0A200F51C13 /* SERQTests */,
 			);
 		};
 /* End PBXProject section */
@@ -130,6 +186,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B02AD92029F1D0A200F51C13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -139,12 +202,29 @@
 			files = (
 				B01E37AE29F0FABF00629E1C /* ViewController.swift in Sources */,
 				B067D80329F11CDB0022EC0F /* DataModels.swift in Sources */,
+				B067D80529F1B4A50022EC0F /* NetworkManager.swift in Sources */,
 				B01E37AA29F0FABF00629E1C /* AppDelegate.swift in Sources */,
 				B01E37AC29F0FABF00629E1C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B02AD91E29F1D0A200F51C13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B02AD92529F1D0A200F51C13 /* SERQTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B02AD92729F1D0A200F51C13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B01E37A529F0FABF00629E1C /* SERQ */;
+			targetProxy = B02AD92629F1D0A200F51C13 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B01E37B429F0FAC000629E1C /* LaunchScreen.storyboard */ = {
@@ -279,6 +359,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WT2WR3A52U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SERQ/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -311,6 +392,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WT2WR3A52U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SERQ/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -336,6 +418,42 @@
 			};
 			name = Release;
 		};
+		B02AD92829F1D0A200F51C13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.george.a.shoemaker.SERQTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SERQ.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SERQ";
+			};
+			name = Debug;
+		};
+		B02AD92929F1D0A200F51C13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.george.a.shoemaker.SERQTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SERQ.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SERQ";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -353,6 +471,15 @@
 			buildConfigurations = (
 				B01E37BB29F0FAC000629E1C /* Debug */,
 				B01E37BC29F0FAC000629E1C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B02AD92A29F1D0A200F51C13 /* Build configuration list for PBXNativeTarget "SERQTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B02AD92829F1D0A200F51C13 /* Debug */,
+				B02AD92929F1D0A200F51C13 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -9,27 +9,85 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let titleLabel = UILabel()
-    let subtitleLabel = UILabel()
+    private let viewModel = ViewModel()
     
-    let refreshButton = UIButton()
-    private var tableView = UITableView()
+    private let titleLabel = UILabel()
+    private let subtitleLabel = UILabel()
     
-    let dummyItems = Array(
+    private let refreshButton = UIButton()
+    private let tableView = UITableView()
+    
+    private let loadingSpinner: UIView = UIView()
+    
+    private let dummyItems = Array(
         repeating: WaitlistItem(position: 99, lastName: "Jingleheimer", firstNameInitial: "J"),
         count: 120
     )
-    let cellReuseID = "waitlistItem"
     
+    private let waitListItems = [WaitlistItem]()
+    
+    private let cellReuseID = "waitlistItem"
+    
+    @objc func refreshButtonTapped(sender: UIButton) {
+        print("tapped refresh button")
+        viewModel.requestWaitlist()
+    }
+    
+    private func showSpinner() {
+        
+        
+    }
+    
+    private func hideSpinner() {
+        loadingSpinner.isHidden = true
+    }
+    
+    private func bindListeners() {
+        viewModel.waitList.bind { [weak self] waitList in
+            self?.tableView.reloadData()
+            print("Waitlist received with \(waitList?.count ?? -1) items")
+        }
+        viewModel.isLoading.bind { [weak self] isLoading in
+            print("isLoading = \(isLoading)")
+            self?.loadingSpinner.isHidden = !isLoading
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
+        bindListeners()
+        
         configureTitle()
         configureButton()
         configureTable()
+        configureIsLoadingView()
+        
+        if viewModel.waitList.value == nil {
+            viewModel.requestWaitlist()
+        }
+    }
+}
 
+extension ViewController {
+    private func configureIsLoadingView() {
+        loadingSpinner.frame = CGRect(
+            x: view.frame.midX - 25, y: view.frame.midY - 25,
+            width: 50, height: 50
+        )
+        loadingSpinner.backgroundColor = .purple
+        loadingSpinner.alpha = 0.8
+        loadingSpinner.layer.cornerRadius = 10
+        
+        let activityView = UIActivityIndicatorView(style: .medium)
+        activityView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityView.color = .white
+        activityView.startAnimating()
+        
+        loadingSpinner.addSubview(activityView)
+        
+        view.addSubview(loadingSpinner)
     }
     
     private func configureTable() {
@@ -80,6 +138,12 @@ class ViewController: UIViewController {
     }
     
     private func configureButton() {
+        refreshButton.addTarget(
+            self,
+            action: #selector(self.refreshButtonTapped),
+            for: .touchUpInside
+        )
+        
         refreshButton.setTitle("Refresh", for: .normal)
         refreshButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .medium)
         refreshButton.backgroundColor = .purple
@@ -102,9 +166,17 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController {
+    func addIsLoadingView() {
+        
+        
+    }
+}
+
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyItems.count
+//        return dummyItems.count
+        return viewModel.waitList.value?.count ?? 0
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,7 +184,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: cellReuseID
         )! as UITableViewCell
         
-        cell.textLabel?.text = dummyItems[indexPath.row].displayString
+//        cell.textLabel?.text = waitListItems[indexPath.row].displayString
+        cell.textLabel?.text = viewModel.waitList.value?[indexPath.row].displayString ?? ""
         
         cell.backgroundColor = {
             if (indexPath.row % 2 == 0) { return UIColor.white }

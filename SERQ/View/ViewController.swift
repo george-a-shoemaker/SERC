@@ -19,11 +19,6 @@ class ViewController: UIViewController {
     
     private let loadingSpinner: UIView = UIView()
     
-    private let dummyItems = Array(
-        repeating: WaitlistItem(position: 99, lastName: "Jingleheimer", firstNameInitial: "J"),
-        count: 120
-    )
-    
     private let waitListItems = [WaitlistItem]()
     
     private let cellReuseID = "waitlistItem"
@@ -33,17 +28,8 @@ class ViewController: UIViewController {
         viewModel.requestWaitlist()
     }
     
-    private func showSpinner() {
-        
-        
-    }
-    
-    private func hideSpinner() {
-        loadingSpinner.isHidden = true
-    }
-    
     private func bindListeners() {
-        viewModel.waitList.bind { [weak self] waitList in
+        viewModel.userNameList.bind { [weak self] waitList in
             self?.tableView.reloadData()
             print("Waitlist received with \(waitList?.count ?? -1) items")
         }
@@ -64,7 +50,7 @@ class ViewController: UIViewController {
         configureTable()
         configureIsLoadingView()
         
-        if viewModel.waitList.value == nil {
+        if viewModel.userNameList.value == nil {
             viewModel.requestWaitlist()
         }
     }
@@ -91,11 +77,6 @@ extension ViewController {
     }
     
     private func configureTable() {
-//        tableView.frame = CGRect(
-//            x: 0, y: 50,
-//            width: UIScreen.main.bounds.size.width,
-//            height: UIScreen.main.bounds.size.height
-//        )
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseID)
@@ -124,7 +105,7 @@ extension ViewController {
         ])
         
 
-        subtitleLabel.text = "( South End Rowing Queue )"
+        subtitleLabel.text = "Pick your name!"
         subtitleLabel.font = .systemFont(ofSize: 20, weight: .medium)
         subtitleLabel.textColor = .black
 
@@ -175,8 +156,7 @@ extension ViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return dummyItems.count
-        return viewModel.waitList.value?.count ?? 0
+        return viewModel.userNameList.value?.count ?? 0
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -184,8 +164,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: cellReuseID
         )! as UITableViewCell
         
-//        cell.textLabel?.text = waitListItems[indexPath.row].displayString
-        cell.textLabel?.text = viewModel.waitList.value?[indexPath.row].displayString ?? ""
+        
+        cell.textLabel?.text =  {
+            guard let userName = viewModel.userNameList.value?[indexPath.row] else {
+                return ""
+            }
+            return "\(userName.lastName), \(userName.firstNameInitial)."
+        }()
         
         cell.backgroundColor = {
             if (indexPath.row % 2 == 0) { return UIColor.white }

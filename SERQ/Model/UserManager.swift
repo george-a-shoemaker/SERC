@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserName {
+struct UserName: Equatable {
     let lastName:String
     let firstNameInitial: String
     
@@ -28,6 +28,14 @@ class UserManager {
     private let USER_KEY = "LastNameFirstNameInitialArray"
     
     private init() {}
+    
+    func clearUser() {
+        userDefaults.removeObject(forKey: USER_KEY)
+    }
+    
+    func hasUser() -> Bool {
+        return getUser() != nil
+    }
     
     func set(userName: UserName) {
         userDefaults.set(userName.toArray(), forKey: USER_KEY)

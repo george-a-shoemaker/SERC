@@ -12,6 +12,18 @@ class ViewModel {
     var error = MainBinder<String?>(nil)
     var userNameList = MainBinder<[UserName]?>(nil)
     
+    func userSelected(at index: Int) {
+        print("## \(userNameList.value![index]) selected!!")
+        
+        guard let user = userNameList.value?[index] else { return }
+        
+        UserManager.shared.set(
+            userName: UserName(lastName: user.lastName, firstNameInitial: user.firstNameInitial)
+        )
+        
+        print("## user set to \(UserManager.shared.getUser()!)")
+    }
+    
     func requestWaitlist() {
         guard (!isLoading.value) else { return }
         
@@ -27,9 +39,7 @@ class ViewModel {
                 }.sorted {
                     let a = $0.lastName + $0.firstNameInitial
                     let b = $1.lastName + $1.firstNameInitial
-                    
-                    if a == b { return true }
-                    return a < b
+                    return a <= b
                 }
             } catch {
                 print(error)

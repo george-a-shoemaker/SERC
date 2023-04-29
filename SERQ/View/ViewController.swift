@@ -179,5 +179,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.userSelected(at: indexPath.row)
+    }
 }
 

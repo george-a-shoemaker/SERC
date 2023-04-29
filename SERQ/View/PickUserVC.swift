@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PickUserVC.swift
 //  SERQ
 //
 //  Created by George Shoemaker on 4/19/23.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PickUserVC: UIViewController {
     
-    private let viewModel = ViewModel()
+    private let viewModel = PickUserVM()
     
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController {
+extension PickUserVC {
     private func configureIsLoadingView() {
         loadingSpinner.frame = CGRect(
             x: view.frame.midX - 25, y: view.frame.midY - 25,
@@ -147,14 +147,14 @@ extension ViewController {
     }
 }
 
-extension ViewController {
+extension PickUserVC {
     func addIsLoadingView() {
         
         
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension PickUserVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.userNameList.value?.count ?? 0
     }

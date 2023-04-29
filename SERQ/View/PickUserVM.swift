@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  PickUserVM.swift
 //  SERQ
 //
 //  Created by George Shoemaker on 4/24/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ViewModel {
+class PickUserVM {
     var isLoading = MainBinder(false)
     var error = MainBinder<String?>(nil)
     var userNameList = MainBinder<[UserName]?>(nil)

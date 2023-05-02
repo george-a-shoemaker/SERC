@@ -19,13 +19,13 @@ class PickUserVC: UIViewController {
     
     private let loadingSpinner: UIView = UIView()
     
-    private let waitListItems = [WaitlistItem]()
+    private let waitListItems = [WaitListItem]()
     
     private let cellReuseID = "waitlistItem"
     
     @objc func refreshButtonTapped(sender: UIButton) {
         print("tapped refresh button")
-        viewModel.requestWaitlist()
+        viewModel.refreshWaitlist()
     }
     
     private func bindListeners() {
@@ -62,7 +62,7 @@ extension PickUserVC {
             x: view.frame.midX - 25, y: view.frame.midY - 25,
             width: 50, height: 50
         )
-        loadingSpinner.backgroundColor = .purple
+        loadingSpinner.backgroundColor = .gray
         loadingSpinner.alpha = 0.8
         loadingSpinner.layer.cornerRadius = 10
         
@@ -127,7 +127,7 @@ extension PickUserVC {
         
         refreshButton.setTitle("Refresh", for: .normal)
         refreshButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .medium)
-        refreshButton.backgroundColor = .purple
+        refreshButton.backgroundColor = RQColors.darkRed
         refreshButton.setTitleColor(.white, for: .normal)
         refreshButton.layer.cornerRadius = 8
         
@@ -182,6 +182,7 @@ extension PickUserVC: UITableViewDelegate, UITableViewDataSource {
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.userSelected(at: indexPath.row)
+        navigationController?.pushViewController(PositionVC(nibName: nil, bundle: nil), animated: true)
     }
 }
 

@@ -19,7 +19,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         self.window = UIWindow(windowScene: windowScene)
-        self.window?.rootViewController = PickUserVC()
+        
+        let viewController = PickUserVC(nibName: nil, bundle: nil)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.navigationBar.tintColor = RQColors.darkRed
+        
+        if UserManager.shared.hasUser() {
+            navigationController.pushViewController(
+                PositionVC(nibName: nil, bundle: nil),
+                animated: false
+            )
+        }
+        
+        
+        self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
 
